@@ -104,7 +104,7 @@ int main()
                         cout << "hecho3" << endl;
                         NodoPrincipal->setSig(nodo);
                         cout << "hecho3" << endl;
-                        //break;
+                        break;
                     }
                     do
                     {
@@ -113,30 +113,38 @@ int main()
                             cout << "hecho1" << endl;
                             temp2 = temp1->getSig();
                             cout << "hecho1" << endl;
-                            temp1 = NULL;
-                            cout << "hecho1" << endl;
                             if (temp2 == NULL)
                             {
+                                cout << "hecho" << endl;
                                 Nodo *nodo = new Nodo(selec);
                                 nodo->setSig(NULL);
-                                temp2->setSig(nodo);
                                 cout << "hecho" << endl;
+                                temp1->setSig(nodo);
+                                cout << "hecho" << endl;
+                                temp1 = NULL;
+                                cout << "hecho1" << endl;
                                 break;
                             }
+                            temp1 = NULL;
                         }
                         else if (temp2 != NULL)
                         {
                             cout << "hecho2" << endl;
                             temp1 = temp2->getSig();
                             cout << "hecho2" << endl;
-                            temp2 = NULL;
                             if (temp1 == NULL)
                             {
+                                cout << "hecho" << endl;
                                 Nodo *nodo = new Nodo(selec);
                                 nodo->setSig(NULL);
-                                temp1->setSig(nodo);
+                                cout << "hecho" << endl;
+                                temp2->setSig(nodo);
+                                cout << "hecho" << endl;
+                                temp2 = NULL;
+                                cout << "hecho1" << endl;
                                 break;
                             }
+                            temp2 = NULL;
                         }
                         else
                         {
