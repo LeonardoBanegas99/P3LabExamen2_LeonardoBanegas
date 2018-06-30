@@ -17,6 +17,7 @@ int main()
         cout << "2) Visualizar Informacion //En creacion" << endl;
         cout << "3) Eliminar Selecciones" << endl;
         cout << "4) Listar Nodos" << endl;
+        cout << "5) Salir" << endl;
         cin >> op;
         switch (op)
         {
@@ -39,7 +40,6 @@ int main()
                     int GolesAnotados;
                     string MaxGoleador;
                     int numGoles;
-                    cout << "Se creara el primer nodo" << endl;
                     cout << "Ingrese Nombre de Seleccion: " << endl;
                     cin >> NombreSelec;
                     cout << "Ingrese Numero de Partidos Ganados: " << endl;
@@ -57,12 +57,9 @@ int main()
 
                     Seleccion *selec = new Seleccion(NombreSelec, PartidosGanados, PartidosPerdidos,
                                                      PartidosEmpatados, GolesAnotados, MaxGoleador, numGoles);
-                    cout << "hecho" << endl;
                     NodoPrincipal = new Nodo();
                     NodoPrincipal->setSeleccion(selec);
-                    cout << "hecho" << endl;
                     NodoPrincipal->setSig(NULL);
-                    cout << "hecho" << endl;
                 }
                 else
                 {
@@ -97,51 +94,35 @@ int main()
                     temp2 = NULL;
                     if (NodoPrincipal->getSig() == NULL)
                     {
-                        cout << "hecho3" << endl;
                         Nodo *nodo = new Nodo(selec);
-                        cout << "hecho3" << endl;
                         nodo->setSig(NULL);
-                        cout << "hecho3" << endl;
                         NodoPrincipal->setSig(nodo);
-                        cout << "hecho3" << endl;
                         break;
                     }
                     do
                     {
                         if (temp1 != NULL)
                         {
-                            cout << "hecho1" << endl;
                             temp2 = temp1->getSig();
-                            cout << "hecho1" << endl;
                             if (temp2 == NULL)
                             {
-                                cout << "hecho" << endl;
                                 Nodo *nodo = new Nodo(selec);
                                 nodo->setSig(NULL);
-                                cout << "hecho" << endl;
                                 temp1->setSig(nodo);
-                                cout << "hecho" << endl;
                                 temp1 = NULL;
-                                cout << "hecho1" << endl;
                                 break;
                             }
                             temp1 = NULL;
                         }
                         else if (temp2 != NULL)
                         {
-                            cout << "hecho2" << endl;
                             temp1 = temp2->getSig();
-                            cout << "hecho2" << endl;
                             if (temp1 == NULL)
                             {
-                                cout << "hecho" << endl;
                                 Nodo *nodo = new Nodo(selec);
                                 nodo->setSig(NULL);
-                                cout << "hecho" << endl;
                                 temp2->setSig(nodo);
-                                cout << "hecho" << endl;
                                 temp2 = NULL;
-                                cout << "hecho1" << endl;
                                 break;
                             }
                             temp2 = NULL;
@@ -151,7 +132,6 @@ int main()
                             break;
                         }
                     } while (true);
-                    cout << "hecho4" << endl;
                 }
             }
             else if (opi == 2)
@@ -200,7 +180,6 @@ int main()
                 }
                 if (NodoPrincipal == NULL)
                 {
-                    cout << "fabio" << endl;
                     cout << "Se creara primero el nodo principal" << endl;
                     string NombreSelec;
                     int PartidosGanados;
@@ -209,7 +188,6 @@ int main()
                     int GolesAnotados;
                     string MaxGoleador;
                     int numGoles;
-                    cout << "Se creara el primer nodo" << endl;
                     cout << "Ingrese Nombre de Seleccion: " << endl;
                     cin >> NombreSelec;
                     cout << "Ingrese Numero de Partidos Ganados: " << endl;
@@ -258,12 +236,10 @@ int main()
 
                     Seleccion *selec = new Seleccion(NombreSelec, PartidosGanados, PartidosPerdidos,
                                                      PartidosEmpatados, GolesAnotados, MaxGoleador, numGoles);
-                    cout << "fabio" << endl;
                     Nodo *temp1 = new Nodo();
                     Nodo *temp2 = new Nodo();
                     temp1 = NodoPrincipal->getSig();
                     temp2 = NULL;
-                    cout << "fabio" << endl;
                     if (posi == 2)
                     {
                         Nodo *te = new Nodo(selec);
@@ -274,10 +250,8 @@ int main()
                     {
                         for (int i = 2; i < posi; i++)
                         {
-                            cout << "fabio1" << endl;
                             if (i % 2 == 0)
                             {
-                                cout << "fabio2" << endl;
                                 temp2 = temp1->getSig();
                                 temp1 = temp2->getSig();
                                 if (i = posi)
@@ -289,7 +263,6 @@ int main()
                             }
                             else
                             {
-                                cout << "fabio3" << endl;
                                 temp1 = temp2->getSig();
                                 temp2 = temp1->getSig();
                                 if (i == posi)
@@ -353,6 +326,43 @@ int main()
                     cout << "Seleccione nodo donde insertar nuevo nodo" << endl;
                     cin >> posi;
                 }
+                Nodo *temp10 = new Nodo();
+                Nodo *temp20 = new Nodo();
+                Nodo *temp30 = new Nodo();
+                temp10 = NodoPrincipal;
+                temp20 = NULL;
+                temp30 = NULL;
+
+                for (int i = 1; i < posi; i++)
+                {
+                    if (posi == 2)
+                    {
+                        temp20 = temp10->getSig(); //2
+                        temp30 = temp20->getSig(); //3
+                        temp10->setSig(temp30);    //1 y 3
+                        break;
+                    }
+                    if (i == posi - 1)
+                    {
+                        temp30 = temp10; //2 o anterior 3
+
+                        temp20 = temp10->getSig(); //3 o altual 4
+
+                        temp10 = temp20->getSig(); //4 o siguiente 5
+
+                        temp30->setSig(temp10); //2 y 4 o 3 y 5
+
+                        break;
+                    }
+                    else
+                    {
+                        temp20 = temp10->getSig();
+                        temp10 = temp20;
+                    }
+                }
+
+                cout << "Borrado" << endl;
+            
             }
             break;
         }
@@ -391,6 +401,10 @@ int main()
                     }
                 } while (true);
             }
+            break;
+        }
+        case 5:{
+            opcion = false;
             break;
         }
         }
